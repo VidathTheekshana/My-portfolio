@@ -204,11 +204,12 @@
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  font-size: 50px;
 }
 
 /* Typewriter text font size restored */
 .title-line.typewriter-line {
-  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
   text-align: center;
@@ -678,8 +679,39 @@
   align-items: center;
 }
 
+.clock-date {
+  position: absolute;
+  top: 125px;
+  right: 55px;
+  color: #00f7ff;
+  font-size: 1.1rem;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 6px 16px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px #00f7ff88;
+  z-index: 999;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
 .clock-label {
   font-size: 0.8rem;
   color: #aaa;
   margin-left: 6px;
+}
+@keyframes letter-glow {
+  0%, 100% {
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba(74, 144, 226, 0.6);
+  }
+  50% {
+    letter-spacing: 7px;
+    text-shadow: 0 0 20px rgba(74, 144, 226, 1);
+  }
+}
+
+.word-highlight {
+  animation: letter-glow 3.5s ease-in-out infinite;
 }

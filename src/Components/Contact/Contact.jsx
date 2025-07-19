@@ -71,7 +71,7 @@ const Contact = () => {
                 <Mail size={28} className="contact-icon" />
                 <div className="icon-glow"></div>
               </div>
-              <p>vidaththeekshana@gmail.com</p>
+              <a href="mailto:vidaththeekshana@gmail.com" className="contact-email">vidaththeekshana@gmail.com</a>
             </div>
             <div className="contact-detail">
               <div className="icon-wrapper">

@@ -199,6 +199,7 @@
   object-fit: cover;
   display: block;
   transition: all 0.5s ease;
+  
 }
 
 .image-overlay {
@@ -212,6 +213,7 @@
 .image-frame:hover .image-overlay {
   opacity: 1;
 }
+
 
 .floating-particles {
   position: absolute;
@@ -522,6 +524,8 @@
     display: none;
   }
 }
+
+
 
 /* Animations */
 @keyframes float-orb {

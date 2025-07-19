@@ -138,7 +138,7 @@ const About = () => {
       {/* Achievements Section */}
       <div className={`about-achievements ${isVisible ? "animate-in" : ""}`}>
         {achievements.map((achievement, index) => (
-          <div key={achievement.label} className="achievement-item">
+          <div key={index} className="achievement-item">
             <div className="achievement-content">
               <div className="achievement-icon">{achievement.icon}</div>
               <h1 className="achievement-number">{achievement.number}</h1>

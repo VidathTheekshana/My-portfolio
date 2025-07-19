@@ -28,11 +28,27 @@ const Hero = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Greeting based on time
+  const greeting = () => {
+    const hour = currentTime.getHours();
+    if (hour < 12) return "Good Morning 🌞";
+    if (hour < 18) return "Good Afternoon ☀️";
+    return "Good Evening 🌙";
+  };
+
   return (
     <div className='hero'>
       {/* Clock Display */}
       <div className="hero-clock">
-        🕒 {currentTime.toLocaleTimeString('en-US', { hour12: false })} <span className="clock-label">Colombo Time</span>
+        🕒 {currentTime.toLocaleTimeString('en-US', { hour12: false })} 
+      </div>
+      <div className="clock-date">
+        🗓️ {currentTime.toLocaleDateString('en-GB', {
+          weekday: 'short',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        })}
       </div>
 
       {/* Particle Glow Background */}
@@ -55,7 +71,7 @@ const Hero = () => {
         <div className="profile-ring ring-2"></div>
         <div className="profile-ring ring-3"></div>
         <div className="profile-glow"></div>
-        <img src={profile_img || "/placeholder.svg"} alt="Profile" className="profile-image" />
+        <img src={profile_img || "/placeholder.svg"} alt="Profile" className="profile-image pulse-animation" />
         <div className="profile-stars">
           {['✦', '✧', '✦', '✧'].map((star, i) => (
             <div key={i} className={`profile-star star-${i + 1}`}>{star}</div>
@@ -72,13 +88,17 @@ const Hero = () => {
       >
         <h1 className="hero-title">
           <span className="title-line">
-            <span className="word-highlight">Hey! I'm</span>
-            <span className="name-highlight"> Vidath Theekshana</span>
+            <span className="word-highlight">{greeting()}</span>
           </span>
+          <span className="title-line">
+            I'm
+          </span>
+          <span className="name-highlight glow-text"> Vidath Theekshana</span>
+        
           <span className="title-line">
             <Typewriter
               options={{
-                strings: ['Computer Science</>', ' Full-Stack Developer  ⚛️', 'UI/UX Lover ✨'],
+                strings: ['Computer Science </>', 'Full-Stack Developer ⚛️', 'UI/UX Lover ✨'],
                 autoStart: true,
                 loop: true,
                 delay: 75,
