@@ -6,7 +6,9 @@ import Typewriter from 'typewriter-effect';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
+  const [currentTime, setCurrentTime] = useState(new Date());
 
+  // Track mouse movement for background glow
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({
@@ -18,8 +20,21 @@ const Hero = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  // Update clock every second
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className='hero'>
+      {/* Clock Display */}
+      <div className="hero-clock">
+        🕒 {currentTime.toLocaleTimeString('en-US', { hour12: false })} <span className="clock-label">Colombo Time</span>
+      </div>
+
       {/* Particle Glow Background */}
       <div className="hero-particles">
         {[...Array(6)].map((_, i) => (
@@ -36,7 +51,9 @@ const Hero = () => {
 
       {/* Profile Presentation */}
       <div className="profile-container">
-        {[1, 2, 3].map(i => <div key={i} className={`profile-ring ring-${i}`}></div>)}
+        <div className="profile-ring ring-1"></div>
+        <div className="profile-ring ring-2"></div>
+        <div className="profile-ring ring-3"></div>
         <div className="profile-glow"></div>
         <img src={profile_img || "/placeholder.svg"} alt="Profile" className="profile-image" />
         <div className="profile-stars">
@@ -61,7 +78,7 @@ const Hero = () => {
           <span className="title-line">
             <Typewriter
               options={{
-                strings: ['Software Engineering Intern', 'React Developer 💻', 'UI/UX Lover ✨'],
+                strings: ['Computer Science</>', ' Full-Stack Developer  ⚛️', 'UI/UX Lover ✨'],
                 autoStart: true,
                 loop: true,
                 delay: 75,

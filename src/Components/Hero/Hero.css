@@ -91,12 +91,12 @@
   z-index: 10;
   border: 3px solid rgba(255, 255, 255, 0.2);
   transition: all 0.5s ease;
-  animation: gentle-float 4s ease-in-out infinite;
+  animation: pulse-scale 6s ease-in-out infinite;
 }
 
 .profile-image:hover {
-  transform: scale(1.05);
-  border-color: rgba(74, 144, 226, 0.5);
+  transform: scale(1.1);
+  border-color: rgba(74, 144, 226, 0.7);
 }
 
 /* Profile Rings */
@@ -189,7 +189,7 @@
 
 /* Enhanced Typography */
 .hero-title {
-  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-size: clamp(3.5rem, 8vw, 5.5rem);
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 30px;
@@ -206,9 +206,9 @@
   flex-wrap: wrap;
 }
 
-/* Updated Typewriter text font size */
-.title-line .Typewriter {
-  font-size: clamp(2rem, 4vw, 3rem); /* increased size */
+/* Typewriter text font size restored */
+.title-line.typewriter-line {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
   text-align: center;
@@ -251,7 +251,7 @@
 }
 
 .hero-description {
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.2rem, 2.5vw, 1.7rem);
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: 50px;
@@ -434,7 +434,7 @@
   left: 50%;
   width: 2px;
   height: 8px;
-  background: #4a90e2; /* blue arrow color */
+  background: #4a90e2;
   transform: translateX(-50%);
   animation: scroll-animation 2s ease-in-out infinite;
 }
@@ -525,13 +525,12 @@
   }
 }
 
-@keyframes gentle-float {
-  0%,
-  100% {
-    transform: translateY(0px);
+@keyframes pulse-scale {
+  0%, 100% {
+    transform: scale(1);
   }
   50% {
-    transform: translateY(-10px);
+    transform: scale(1.05);
   }
 }
 
@@ -624,17 +623,6 @@
   }
 }
 
-@keyframes fade-in-up {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
 @keyframes scroll-animation {
   0% {
     opacity: 0;
@@ -672,4 +660,26 @@
     transform: scale(1.05);
     opacity: 0.8;
   }
+}
+.hero-clock {
+  position: absolute;
+  top: 125px;
+  left: 55px;
+  color: #00f7ff;
+  font-size: 1.1rem;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 6px 16px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px #00f7ff88;
+  z-index: 999;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.clock-label {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-left: 6px;
 }
