@@ -1,0 +1,509 @@
+.mywork {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* smoother vertical flow */
+  gap: 80px;
+  margin: 80px auto;
+  max-width: 1400px;
+  padding: 0 40px;
+  position: relative;
+  color: white;
+  min-height: auto; /* natural height */
+}
+
+/* Background Elements (consistent with your style) */
+.mywork-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.orb-work-1 {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(74, 144, 226, 0.1), transparent);
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: float-orb 10s ease-in-out infinite;
+}
+
+.orb-work-2 {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(135, 206, 235, 0.1), transparent);
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: float-orb 12s ease-in-out infinite reverse;
+}
+
+.constellation-work {
+  position: absolute;
+  top: 70%;
+  right: 10%;
+  width: 150px;
+  height: 150px;
+  opacity: 0.2;
+}
+
+.constellation-work::before,
+.constellation-work::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+  height: 1px;
+}
+
+.constellation-work::before {
+  width: 60px;
+  top: 30px;
+  left: 0;
+  transform: rotate(20deg);
+}
+
+.constellation-work::after {
+  width: 40px;
+  top: 70px;
+  left: 20px;
+  transform: rotate(-50deg);
+}
+
+/* Title Section */
+.mywork-title {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease-out;
+}
+
+.mywork-title.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mywork-title .title-container {
+  position: relative;
+}
+
+.mywork-title .section-title {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.mywork-title .title-word {
+  color: rgba(255, 255, 255, 0.9);
+  animation: text-glow 3s ease-in-out infinite;
+}
+
+.mywork-title .title-word.highlight {
+  background: linear-gradient(135deg, #4a90e2 0%, #87ceeb 50%, #4a90e2 100%);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-text 4s ease-in-out infinite;
+}
+
+.mywork-title .title-decoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.mywork-title .star-decoration {
+  color: #4a90e2;
+  font-size: 24px;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.mywork-title .line-decoration {
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4a90e2, transparent);
+  animation: line-glow 2s ease-in-out infinite;
+}
+
+/* Work Container */
+.mywork-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+}
+
+/* Work Card */
+.work-card {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(50px) rotateX(10deg);
+  animation: card-reveal 1s ease-out forwards;
+  perspective: 1000px;
+  min-width: 280px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.work-card.animate-in {
+  opacity: 1;
+  transform: translateY(0) rotateX(0deg);
+}
+
+.work-card:hover {
+  transform: translateY(-15px) scale(1.03) rotateX(5deg);
+  box-shadow: 0 25px 50px rgba(74, 144, 226, 0.3);
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+}
+
+.work-card:hover .card-inner {
+  border-color: rgba(74, 144, 226, 0.3);
+}
+
+/* Image Wrapper and Hover */
+.card-image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 66.66%; /* 3:2 aspect ratio */
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+  border-radius: 12px;
+}
+
+.work-card:hover .card-image {
+  transform: scale(1.15);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 25px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  border-radius: 12px;
+}
+
+.work-card:hover .image-overlay {
+  opacity: 1;
+}
+
+.overlay-content {
+  transform: translateY(30px);
+  transition: transform 0.5s ease;
+}
+
+.work-card:hover .overlay-content {
+  transform: translateY(0);
+}
+
+/* Text Content */
+.project-title {
+  font-size: clamp(1.4rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.project-description {
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 15px;
+  line-height: 1.5;
+  max-height: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.project-category {
+  font-size: clamp(0.75rem, 1vw, 0.85rem);
+  font-weight: 600;
+  color: #87ceeb;
+  background: rgba(135, 206, 235, 0.1);
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: fit-content;
+  margin-bottom: 15px;
+  border: 1px solid rgba(135, 206, 235, 0.3);
+}
+
+/* View Project Button */
+.view-project-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  font-weight: 600;
+  color: #4a90e2;
+  background: linear-gradient(135deg, #4a90e2, #87ceeb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border: 2px solid #4a90e2;
+  padding: 10px 20px;
+  border-radius: 30px;
+  width: fit-content;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.view-project-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+  border-color: #87ceeb;
+}
+
+.view-project-button svg {
+  transition: transform 0.3s ease;
+}
+
+.view-project-button:hover svg {
+  transform: translateX(5px);
+}
+
+/* Card Glow and Border */
+.card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(74, 144, 226, 0.2) 0%, transparent 70%);
+  border-radius: 15px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.work-card:hover .card-glow {
+  opacity: 1;
+}
+
+.card-border-effect {
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  padding: 2px;
+  background: linear-gradient(135deg, #4a90e2, #87ceeb, #4a90e2);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.work-card:hover .card-border-effect {
+  opacity: 1;
+}
+
+/* Show More Button */
+.mywork-showmore {
+  display: flex;
+  gap: 15px;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 20px 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 40px;
+  margin-bottom: 80px;
+  transition: all 0.6s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fade-in-up 1s ease-out forwards 0.8s;
+  justify-content: center;
+}
+
+.mywork-showmore.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mywork-showmore:hover {
+  gap: 30px;
+  border-color: #87ceeb;
+  box-shadow: 0 10px 30px rgba(135, 206, 235, 0.3);
+}
+
+.mywork-showmore:hover .showmore-glow {
+  opacity: 1;
+}
+
+.mywork-showmore p {
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.mywork-showmore svg {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.mywork-showmore:hover svg {
+  transform: translateX(5px);
+}
+
+.showmore-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #4a90e2, #87ceeb);
+  opacity: 0;
+  filter: blur(20px);
+  transition: opacity 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .mywork {
+    margin: 60px auto;
+    padding: 0 30px;
+    gap: 60px;
+  }
+
+  .mywork-container {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .mywork {
+    padding: 0 20px;
+    gap: 40px;
+  }
+
+  .mywork-title .section-title {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+
+  .mywork-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .work-card {
+    min-width: 100%;
+    max-width: 100%;
+    transform: translateY(30px) rotateX(5deg);
+  }
+
+  .work-card:hover {
+    transform: translateY(-10px) scale(1.02) rotateX(2deg);
+  }
+
+  .project-title {
+    font-size: 1.4rem;
+  }
+
+  .project-description {
+    font-size: 0.9rem;
+  }
+
+  .project-category {
+    font-size: 0.8rem;
+  }
+
+  .view-project-button {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+  }
+
+  .mywork-showmore {
+    padding: 15px 30px;
+    font-size: 1rem;
+  }
+}
+
+/* Animations (reuse your existing ones) */
+@keyframes float-orb {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(180deg); }
+}
+
+@keyframes text-glow {
+  0%, 100% { text-shadow: 0 0 5px rgba(255,255,255,0.3); }
+  50% { text-shadow: 0 0 20px rgba(255,255,255,0.6); }
+}
+
+@keyframes gradient-text {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes line-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes card-reveal {
+  0% { opacity: 0; transform: translateY(50px) rotateX(10deg); }
+  100% { opacity: 1; transform: translateY(0) rotateX(0deg); }
+}
+
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

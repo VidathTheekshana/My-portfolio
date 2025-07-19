@@ -1,0 +1,441 @@
+/* ===== Footer Base ===== */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px 40px;
+  margin: 0 auto;
+  max-width: 1400px;
+  position: relative;
+  color: white;
+  overflow: hidden;
+}
+
+/* ===== Background Elements ===== */
+.footer-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.orb-footer-1,
+.orb-footer-2 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.orb-footer-1 {
+  top: 10%;
+  left: 5%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(74, 144, 226, 0.08), transparent);
+  animation-name: float-orb;
+  animation-duration: 10s;
+}
+
+.orb-footer-2 {
+  bottom: 15%;
+  right: 8%;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(135, 206, 235, 0.08), transparent);
+  animation-name: float-orb;
+  animation-duration: 12s;
+  animation-direction: reverse;
+}
+
+.shooting-star-footer {
+  position: absolute;
+  top: 80%;
+  left: 20%;
+  width: 2px;
+  height: 2px;
+  background: linear-gradient(45deg, #ffffff, #87ceeb);
+  border-radius: 50%;
+  animation: shooting-footer 15s linear infinite 5s;
+}
+
+.shooting-star-footer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, #ffffff, transparent);
+  transform: translateY(-50%);
+}
+
+/* ===== Footer Content Container ===== */
+.footer-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+.footer-content.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Top Section ===== */
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 400px;
+}
+
+/* Logo Container with Glow */
+.footer-logo-container {
+  position: relative;
+  width: fit-content;
+}
+
+.footer-logo-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, #4a90e2, #87ceeb);
+  border-radius: 50%;
+  filter: blur(8px);
+  opacity: 0.75;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.footer-logo {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(45deg, #4a90e2, #87ceeb);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Logo Text with Shimmer */
+.footer-logo-text {
+  background: linear-gradient(45deg, #ffffff, #e6f3ff, #ffffff);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer 2s linear infinite;
+}
+
+/* Brand Description */
+.footer-description {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+/* Social Icons Container */
+.footer-socials {
+  display: flex;
+  gap: 20px;
+}
+
+/* Social Icon Wrapper with hover effect */
+.social-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.social-icon-wrapper:hover {
+  transform: translateY(-5px) scale(1.1);
+  background: rgba(74, 144, 226, 0.1);
+  border-color: rgba(74, 144, 226, 0.3);
+  box-shadow: 0 10px 20px rgba(74, 144, 226, 0.2);
+}
+
+/* Social Icon Color & Glow */
+.social-icon {
+  color: #87ceeb;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.social-icon-wrapper:hover .social-icon {
+  color: #4a90e2;
+}
+
+.social-icon-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(74, 144, 226, 0.3), transparent 70%);
+  border-radius: 50%;
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.social-icon-wrapper:hover .social-icon-glow {
+  opacity: 1;
+}
+
+/* ===== Divider ===== */
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  margin: 40px 0;
+}
+
+/* ===== Bottom Section ===== */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Footer Navigation Links */
+.footer-nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.footer-nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.footer-nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #4a90e2, #87ceeb);
+  transition: width 0.3s ease;
+}
+
+.footer-nav-link:hover {
+  color: white;
+}
+
+.footer-nav-link:hover::after {
+  width: 100%;
+}
+
+/* Copyright Text */
+.footer-copyright {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  text-align: right;
+}
+
+/* ===== Scroll to Top Button ===== */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #4a90e2, #87ceeb);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(74, 144, 226, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 100;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(74, 144, 226, 0.4);
+}
+
+.scroll-to-top-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(74, 144, 226, 0.3), transparent 70%);
+  border-radius: 50%;
+  filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-to-top:hover .scroll-to-top-glow {
+  opacity: 1;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 1024px) {
+  .footer {
+    padding: 60px 30px 30px;
+    gap: 60px;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .footer-brand {
+    align-items: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-nav-links {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .footer-copyright {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 20px 20px;
+    gap: 40px;
+  }
+
+  .footer-socials {
+    gap: 15px;
+  }
+
+  .social-icon-wrapper {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-icon {
+    font-size: 20px;
+  }
+
+  .footer-nav-links {
+    gap: 15px;
+    font-size: 0.9rem;
+  }
+
+  .footer-copyright {
+    font-size: 0.8rem;
+  }
+
+  .scroll-to-top {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .scroll-to-top svg {
+    font-size: 24px;
+  }
+}
+
+/* ===== Animations ===== */
+@keyframes float-orb {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg);
+  }
+}
+
+@keyframes shooting-footer {
+  0% {
+    transform: translateX(300px) translateY(-300px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-300px) translateY(300px);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes text-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
