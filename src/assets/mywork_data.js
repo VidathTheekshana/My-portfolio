@@ -8,17 +8,17 @@ import project6_img from '../assets/project_6.svg'
 const mywork_data = [
     {
         w_no:1,
-        w_name:"Web design",
+        w_name:"Web Design",
         w_img:project1_img
     },
     {
         w_no:2,
-        w_name:"Web design",
+        w_name:"Fitness Web",
         w_img:project2_img
     },
     {
         w_no:3,
-        w_name:"Web design",
+        w_name:"Macktech Web",
         w_img:project3_img
     },
     {

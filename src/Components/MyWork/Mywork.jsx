@@ -2,10 +2,9 @@
 
 import { useState, useEffect, useRef } from "react"
 import "./MyWork.css"
-import mywork_data from "../data/mywork_data" // Using the new data file
-import { ExternalLink } from "lucide-react" // Using Lucide React for external link icon
+import mywork_data from "../../assets/mywork_data"
+import { ExternalLink } from "lucide-react"
 
-// Simple SVG for arrow icon (reused from Services.jsx)
 const ArrowIcon = () => (
   <svg
     width="24"
@@ -29,16 +28,12 @@ const MyWork = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
+        if (entry.isIntersecting) setIsVisible(true)
       },
-      { threshold: 0.2 }, // Trigger when 20% of the component is visible
+      { threshold: 0.2 }
     )
-
     const currentRef = workRef.current
     if (currentRef) observer.observe(currentRef)
-
     return () => {
       if (currentRef) observer.unobserve(currentRef)
     }
@@ -46,14 +41,14 @@ const MyWork = () => {
 
   return (
     <div className="mywork" id="portfolio" ref={workRef}>
-      {/* Floating background elements */}
+      {/* Background */}
       <div className="mywork-background">
         <div className="floating-orb orb-work-1"></div>
         <div className="floating-orb orb-work-2"></div>
         <div className="constellation-work"></div>
       </div>
 
-      {/* Title Section */}
+      {/* Title */}
       <div className={`mywork-title ${isVisible ? "animate-in" : ""}`}>
         <div className="title-container">
           <h1 className="section-title">
@@ -68,7 +63,7 @@ const MyWork = () => {
         </div>
       </div>
 
-      {/* Work Container */}
+      {/* Projects Grid */}
       <div className="mywork-container">
         {mywork_data.map((work, index) => (
           <a
@@ -81,7 +76,11 @@ const MyWork = () => {
           >
             <div className="card-inner">
               <div className="card-image-wrapper">
-                <img src={work.w_img || "/placeholder.svg"} alt={work.w_name} className="card-image" />
+                <img
+                  src={work.w_img}
+                  alt={work.w_name}
+                  className="card-image"
+                />
                 <div className="image-overlay">
                   <div className="overlay-content">
                     <h3 className="project-title">{work.w_name}</h3>
@@ -100,7 +99,7 @@ const MyWork = () => {
         ))}
       </div>
 
-      {/* Show More Button */}
+      {/* Show More */}
       <div className={`mywork-showmore ${isVisible ? "animate-in" : ""}`}>
         <p>Show More</p>
         <ArrowIcon />

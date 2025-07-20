@@ -120,13 +120,13 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
-          <button className="hero-connect">
+          <a href="#contact" className="hero-connect" style={{ textDecoration: "none" }}>
             <span className="button-text">Connect With Me</span>
             <div className="button-glow"></div>
             <div className="button-particles">
               {[...Array(3)].map((_, i) => <span key={i} className="btn-particle"></span>)}
             </div>
-          </button>
+          </a>
 
           <button className="hero-resume">
             <span className="button-text">Download CV</span>

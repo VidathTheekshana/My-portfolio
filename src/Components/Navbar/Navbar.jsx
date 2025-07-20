@@ -31,7 +31,7 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const navItems = ["Home", "About Me", "Services", "Portfolio", "Contact"]
+  const navItems = ["Home", "About Me", "Services", "Projects", "Contact"]
 
   // Generate random stars
   const generateStars = (count) => {
@@ -54,24 +54,24 @@ function Navbar() {
       {/* Starry Night Background */}
       <div className="background-container">
         <div className="night-sky-bg"></div>
-        
+
         {/* Stars layers */}
         <div className="stars-layer stars-small">{generateStars(100)}</div>
         <div className="stars-layer stars-medium">{generateStars(50)}</div>
         <div className="stars-layer stars-large">{generateStars(20)}</div>
-        
+
         {/* Shooting stars */}
         <div className="shooting-stars">
           <div className="shooting-star shooting-star-1"></div>
           <div className="shooting-star shooting-star-2"></div>
           <div className="shooting-star shooting-star-3"></div>
         </div>
-        
+
         {/* Nebula effects */}
         <div className="nebula nebula-1"></div>
         <div className="nebula nebula-2"></div>
         <div className="nebula nebula-3"></div>
-        
+
         {/* Constellation lines */}
         <div className="constellation constellation-1"></div>
         <div className="constellation constellation-2"></div>
@@ -80,18 +80,18 @@ function Navbar() {
       {/* Navbar */}
       <nav className={`navbar ${isScrolled ? "navbar-scrolled" : ""}`}>
         <div className="navbar-container">
-          <div className="navbar-content">
+          <div className="navbar-content" style={{ display: "flex", alignItems: "center" }}>
             {/* Logo */}
-            <div className="logo-container">
+            <div className="logo-container" style={{ flexShrink: 0 }}>
               <div className="logo-glow"></div>
               <div className="logo">
                 <span className="logo-text">V</span>
               </div>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="nav-menu-desktop">
-              <div className="nav-items">
+            {/* Centered Desktop Navigation */}
+            <div className="nav-menu-desktop" style={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
+              <div className="nav-items" style={{ display: "flex", gap: "30px" }}>
                 {navItems.map((item, index) => (
                   <a
                     key={item}
@@ -107,20 +107,8 @@ function Navbar() {
               </div>
             </div>
 
-            {/* Connect Button */}
-            <div className="connect-button-container">
-              <button className="connect-button">
-                <div className="connect-button-bg"></div>
-                <div className="connect-button-glow"></div>
-                <span className="connect-button-content">
-                  Connect With Me
-                  <div className="status-dot"></div>
-                </span>
-              </button>
-            </div>
-
             {/* Mobile menu button */}
-            <div className="mobile-menu-button">
+            <div className="mobile-menu-button" style={{ flexShrink: 0 }}>
               <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="mobile-toggle">
                 {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
               </button>
@@ -143,7 +131,6 @@ function Navbar() {
                   {item}
                 </a>
               ))}
-              <button className="mobile-connect-button">Connect With Me</button>
             </div>
           </div>
         </div>
