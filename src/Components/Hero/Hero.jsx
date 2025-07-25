@@ -2,10 +2,14 @@
 
 import { useState, useEffect } from "react"
 import "./Hero.css"
+// import TypewriterEffect from "./TypewriterEffect" // Assuming TypewriterEffect is in the same directory
+import profileimg from "../../assets/profile.JPG"
+import { p } from "framer-motion/client"
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 })
   const [currentTime, setCurrentTime] = useState(new Date())
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   // Track mouse movement for background glow
   useEffect(() => {
@@ -27,6 +31,17 @@ const Hero = () => {
     return () => clearInterval(timer)
   }, [])
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (isMenuOpen && !e.target.closest('.navbar')) {
+        setIsMenuOpen(false)
+      }
+    }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [isMenuOpen])
+
   // Greeting based on time
   const greeting = () => {
     const hour = currentTime.getHours()
@@ -35,20 +50,47 @@ const Hero = () => {
     return "Good Evening 🌙"
   }
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
   return (
     <div className="hero">
-      {/* Beautiful Clock Display */}
+      {/* Navigation Bar */}
+      <nav className="navbar">
+        <div className="nav-container">
+          <div className="nav-logo">
+            <span className="logo-text">Vidath</span>
+          </div>
+          
+          <div className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
+            <a href="#home" className="nav-link" onClick={() => setIsMenuOpen(false)}>Home</a>
+            <a href="#about" className="nav-link" onClick={() => setIsMenuOpen(false)}>About</a>
+            <a href="#skills" className="nav-link" onClick={() => setIsMenuOpen(false)}>Skills</a>
+            <a href="#projects" className="nav-link" onClick={() => setIsMenuOpen(false)}>Projects</a>
+            <a href="#contact" className="nav-link" onClick={() => setIsMenuOpen(false)}>Contact</a>
+          </div>
+
+          <div className={`nav-toggle ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </div>
+        </div>
+      </nav>
+
+      {/* Beautiful Clock Display - Adjusted positioning */}
       <div className="clock-display">
         <div className="time-container">
           <div className="time-card">
             <div className="time-icon">⏰</div>
             <div className="time-content">
               <div className="time-value">
-                {currentTime.toLocaleTimeString("en-US", { 
+                {currentTime.toLocaleTimeString("en-US", {
                   hour12: false,
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  second: '2-digit'
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  second: "2-digit",
                 })}
               </div>
               <div className="time-label">Local Time</div>
@@ -95,7 +137,7 @@ const Hero = () => {
         <div className="profile-ring ring-2"></div>
         <div className="profile-ring ring-3"></div>
         <div className="profile-glow"></div>
-        <img src="/placeholder.svg?height=280&width=280" alt="Profile" className="profile-image pulse-animation" />
+        <img src={profileimg} alt="Profile" className="profile-image pulse-animation" />
         <div className="profile-stars">
           {["✦", "✧", "✦", "✧"].map((star, i) => (
             <div key={i} className={`profile-star star-${i + 1}`}>
