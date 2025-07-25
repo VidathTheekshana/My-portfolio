@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "framer-motion": "^12.23.6",
+    "framer-motion": "^12.23.9",
     "lucide-react": "^0.525.0",
     "react": "^19.1.0",
     "react-anchor-link-smooth-scroll": "^1.0.12",

@@ -9,6 +9,112 @@
   color: white;
 }
 
+/* Beautiful Clock Display */
+.clock-display {
+  position: fixed;
+  top: 25px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 30px;
+  pointer-events: none;
+}
+
+.time-container,
+.date-container {
+  pointer-events: auto;
+  animation: slideInFromTop 1s ease-out;
+}
+
+.time-card,
+.date-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 247, 255, 0.3);
+  border-radius: 20px;
+  padding: 16px 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 247, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.time-card:hover,
+.date-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(0, 247, 255, 0.6);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 247, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.time-icon,
+.date-icon {
+  font-size: 24px;
+  filter: drop-shadow(0 0 8px #00f7ff);
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+.time-content,
+.date-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.time-value {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #00f7ff;
+  text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+  letter-spacing: 1px;
+}
+
+.time-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.date-value {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: #00f7ff;
+  text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+  letter-spacing: 0.5px;
+}
+
+.date-year {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.time-glow,
+.date-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 247, 255, 0.1), rgba(74, 144, 226, 0.1));
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  filter: blur(10px);
+}
+
+.time-card:hover .time-glow,
+.date-card:hover .date-glow {
+  opacity: 1;
+}
+
 /* Hero Particles */
 .hero-particles {
   position: absolute;
@@ -207,17 +313,23 @@
   font-size: 50px;
 }
 
-/* Typewriter text font size restored */
-.title-line.typewriter-line {
+/* Typewriter Effect */
+.typewriter-container {
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
-  text-align: center;
+  display: inline-block;
+  min-height: 1.2em;
+}
+
+.typewriter-cursor {
+  animation: blink-cursor 1s infinite;
+  color: #4a90e2;
 }
 
 .word-highlight {
   color: rgba(255, 255, 255, 0.9);
-  animation: text-glow 3s ease-in-out infinite;
+  animation: letter-glow 3.5s ease-in-out infinite;
 }
 
 .name-highlight {
@@ -239,16 +351,6 @@
   height: 3px;
   background: linear-gradient(90deg, transparent, #4a90e2, transparent);
   animation: underline-glow 2s ease-in-out infinite;
-}
-
-.role-text {
-  color: rgba(255, 255, 255, 0.95);
-  font-weight: 600;
-}
-
-.location-text {
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 500;
 }
 
 .hero-description {
@@ -462,9 +564,44 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .clock-display {
+    padding: 0 20px;
+  }
+}
+
 @media (max-width: 768px) {
   .hero {
     padding: 100px 15px 40px;
+  }
+
+  .clock-display {
+    padding: 0 15px;
+    top: 20px;
+  }
+
+  .time-card,
+  .date-card {
+    padding: 12px 16px;
+    gap: 10px;
+  }
+
+  .time-icon,
+  .date-icon {
+    font-size: 20px;
+  }
+
+  .time-value {
+    font-size: 16px;
+  }
+
+  .date-value {
+    font-size: 14px;
+  }
+
+  .time-label,
+  .date-year {
+    font-size: 10px;
   }
 
   .profile-image {
@@ -476,10 +613,12 @@
     width: 260px;
     height: 260px;
   }
+
   .ring-2 {
     width: 300px;
     height: 300px;
   }
+
   .ring-3 {
     width: 340px;
     height: 340px;
@@ -500,24 +639,102 @@
     flex-direction: column;
     gap: 5px;
   }
+}
 
-  .hero-clock{
-        top: 10px;
-    left: 10px;
-    font-size: 0.9rem;
-    padding: 4px 10px;
+@media (max-width: 480px) {
+  .clock-display {
+    padding: 0 10px;
+    top: 15px;
   }
 
-  .clock-date{
-        top: 10px;
-    right: 10px;
-    font-size: 0.9rem;
-    padding: 4px 10px;
+  .time-card,
+  .date-card {
+    padding: 10px 12px;
+    gap: 8px;
+    border-radius: 16px;
   }
-  
+
+  .time-icon,
+  .date-icon {
+    font-size: 18px;
+  }
+
+  .time-value {
+    font-size: 14px;
+  }
+
+  .date-value {
+    font-size: 12px;
+  }
+
+  .time-label,
+  .date-year {
+    font-size: 9px;
+  }
+
+  .profile-image {
+    width: 180px;
+    height: 180px;
+  }
+
+  .ring-1 {
+    width: 220px;
+    height: 220px;
+  }
+
+  .ring-2 {
+    width: 260px;
+    height: 260px;
+  }
+
+  .ring-3 {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 360px) {
+  .clock-display {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+  }
+
+  .time-container,
+  .date-container {
+    width: auto;
+  }
 }
 
 /* Animations */
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes iconPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px #00f7ff);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px #00f7ff);
+  }
+}
+
 @keyframes float-particle {
   0%,
   100% {
@@ -542,7 +759,8 @@
 }
 
 @keyframes pulse-scale {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -594,13 +812,15 @@
   }
 }
 
-@keyframes text-glow {
+@keyframes letter-glow {
   0%,
   100% {
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba(74, 144, 226, 0.6);
   }
   50% {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    letter-spacing: 7px;
+    text-shadow: 0 0 20px rgba(74, 144, 226, 1);
   }
 }
 
@@ -654,9 +874,9 @@
   }
 }
 
-/* Scroll Indicator Bounce Animation */
 @keyframes bounce-fade {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
   }
@@ -666,9 +886,9 @@
   }
 }
 
-/* Scale animation for the text */
 @keyframes scale-text {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
@@ -676,61 +896,15 @@
     transform: scale(1.05);
     opacity: 0.8;
   }
-  
 }
 
-.hero-clock {
-  position: absolute;
-  top: 125px;
-  left: 55px;
-  color: #00f7ff;
-  font-size: 1.1rem;
-  font-family: 'Courier New', Courier, monospace;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 6px 16px;
-  border-radius: 12px;
-  box-shadow: 0 0 12px #00f7ff88;
-  z-index: 999;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.clock-date {
-  position: absolute;
-  top: 125px;
-  right: 55px;
-  color: #00f7ff;
-  font-size: 1.1rem;
-  font-family: 'Courier New', Courier, monospace;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 6px 16px;
-  border-radius: 12px;
-  box-shadow: 0 0 12px #00f7ff88;
-  z-index: 999;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.clock-label {
-  font-size: 0.8rem;
-  color: #aaa;
-  margin-left: 6px;
-}
-
-@keyframes letter-glow {
-  0%, 100% {
-    letter-spacing: 2px;
-    text-shadow: 0 0 5px rgba(74, 144, 226, 0.6);
-  }
+@keyframes blink-cursor {
+  0%,
   50% {
-    letter-spacing: 7px;
-    text-shadow: 0 0 20px rgba(74, 144, 226, 1);
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
   }
 }
-
-.word-highlight {
-  animation: letter-glow 3.5s ease-in-out infinite;
-}
-
